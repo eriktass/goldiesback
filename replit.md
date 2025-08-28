@@ -2,7 +2,7 @@
 
 ## Overview
 
-A full-stack web application for exploring GitHub repositories with advanced search, analytics, and repository browsing capabilities. Built using React with TypeScript on the frontend, Express.js backend, and PostgreSQL database with Drizzle ORM. The application provides features like repository search, detailed repository analysis, file browsing, language analytics, and repository comparison tools.
+A comprehensive multi-platform GitHub repository management and analytics tool with support for desktop web, mobile web, Android clients, and Chromebook optimization. Features dual backend architecture (Node.js/Express and Python Flask), complete type safety, responsive design, and comprehensive GitHub API integration. The application provides advanced search, analytics, file browsing, repository comparison, and cross-platform compatibility.
 
 ## User Preferences
 
@@ -19,12 +19,13 @@ Preferred communication style: Simple, everyday language.
 - **Build System**: Vite with hot module replacement in development
 
 ### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **Language**: TypeScript with ESM modules
-- **API Design**: RESTful API with GitHub API integration
+- **Primary Backend**: Node.js with Express.js framework and TypeScript
+- **Alternative Backend**: Python Flask with SQLAlchemy ORM and Flask-Migrate
+- **API Design**: RESTful APIs with comprehensive GitHub API integration
 - **Error Handling**: Global error middleware with structured error responses
 - **Logging**: Custom request/response logging middleware
-- **Development**: Hot reload using tsx in development mode
+- **Development**: Hot reload using tsx (Node.js) and Flask debug mode (Python)
+- **Database Support**: Both Drizzle ORM (Node.js) and SQLAlchemy (Flask)
 
 ### Data Layer
 - **Database**: PostgreSQL with Drizzle ORM
@@ -42,9 +43,18 @@ Preferred communication style: Simple, everyday language.
 - **Fonts**: Google Fonts integration (Inter, DM Sans, Fira Code, Geist Mono)
 - **Development Tools**: Replit integration with cartographer plugin and error overlay
 
+### Platform Support
+- **Desktop Web**: Full React application with comprehensive features
+- **Mobile Web**: Responsive interface optimized for mobile browsers and Chromebooks
+- **Android Client**: Native WebView wrapper with pull-to-refresh and deep links
+- **Chromebook**: Touch and keyboard optimized interface for tablet mode
+- **PWA**: Progressive Web App capabilities with offline support
+
 ### Key Design Patterns
+- **Multi-Platform Architecture**: Dual backend support (Node.js/Flask) with platform-specific optimizations
 - **Monorepo Structure**: Shared schema and types between client/server
 - **Component Composition**: Highly reusable UI components with consistent API
 - **Query Optimization**: Intelligent caching and stale-while-revalidate patterns
-- **Responsive Design**: Mobile-first approach with adaptive layouts
+- **Responsive Design**: Mobile-first approach with adaptive layouts for all screen sizes
 - **Type Safety**: End-to-end type safety from database to UI components
+- **Cross-Platform Compatibility**: Consistent experience across web, mobile, and native platforms
