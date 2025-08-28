@@ -1,4 +1,20 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
+import type { Repository } from "@shared/schema";
+
+// API Response types
+export interface SearchRepositoriesResponse {
+  total_count: number;
+  repositories: Repository[];
+}
+
+export interface RepositoryTrafficResponse {
+  count: number;
+  uniques: number;
+}
+
+export interface RepositoryLanguagesResponse {
+  [language: string]: number;
+}
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {

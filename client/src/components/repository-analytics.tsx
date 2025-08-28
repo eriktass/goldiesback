@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TrendingUp, Eye, Download, Code } from "lucide-react";
+import type { RepositoryLanguagesResponse, RepositoryTrafficResponse } from "@/lib/queryClient";
 
 interface RepositoryAnalyticsProps {
   owner: string;
@@ -9,17 +10,17 @@ interface RepositoryAnalyticsProps {
 }
 
 export default function RepositoryAnalytics({ owner, repo }: RepositoryAnalyticsProps) {
-  const { data: languages, isLoading: languagesLoading } = useQuery({
+  const { data: languages, isLoading: languagesLoading } = useQuery<RepositoryLanguagesResponse>({
     queryKey: ["/api/repositories", owner, repo, "languages"],
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  const { data: traffic, isLoading: trafficLoading } = useQuery({
+  const { data: traffic, isLoading: trafficLoading } = useQuery<RepositoryTrafficResponse>({
     queryKey: ["/api/repositories", owner, repo, "traffic", "views"],
     staleTime: 60 * 1000, // 1 minute
   });
 
-  const { data: clones, isLoading: clonesLoading } = useQuery({
+  const { data: clones, isLoading: clonesLoading } = useQuery<RepositoryTrafficResponse>({
     queryKey: ["/api/repositories", owner, repo, "traffic", "clones"],
     staleTime: 60 * 1000, // 1 minute
   });

@@ -38,7 +38,11 @@ export class MemStorage implements IStorage {
 
   async createRepository(insertRepository: InsertRepository): Promise<Repository> {
     const id = randomUUID();
-    const repository: Repository = { ...insertRepository, id };
+    const repository: Repository = { 
+      ...insertRepository, 
+      id,
+      language: insertRepository.language || null
+    };
     this.repositories.set(id, repository);
     return repository;
   }
@@ -84,7 +88,8 @@ export class MemStorage implements IStorage {
     const searchResult: SearchResult = { 
       ...insertSearchResult, 
       id,
-      createdAt: new Date()
+      createdAt: new Date(),
+      results: insertSearchResult.results
     };
     this.searchResults.set(id, searchResult);
     return searchResult;

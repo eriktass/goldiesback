@@ -10,11 +10,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star, GitFork, AlertCircle, Code, BarChart, Download, ExternalLink } from "lucide-react";
 import { SiGithub } from "react-icons/si";
+import type { Repository } from "@shared/schema";
 
 export default function Repository() {
   const { owner, repo } = useParams();
 
-  const { data: repository, isLoading } = useQuery({
+  const { data: repository, isLoading } = useQuery<Repository>({
     queryKey: ["/api/repositories", owner, repo],
     enabled: !!(owner && repo),
   });

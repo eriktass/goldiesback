@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Search, GitCompare, Star, GitFork, AlertCircle, Scale } from "lucide-react";
+import type { Repository } from "@shared/schema";
+import type { SearchRepositoriesResponse } from "@/lib/queryClient";
 
 export default function RepositoryComparison() {
   const [repo1Query, setRepo1Query] = useState("");
@@ -13,23 +15,23 @@ export default function RepositoryComparison() {
   const [repo1, setRepo1] = useState<string | null>(null);
   const [repo2, setRepo2] = useState<string | null>(null);
 
-  const { data: repo1Data, isLoading: repo1Loading } = useQuery({
+  const { data: repo1Data, isLoading: repo1Loading } = useQuery<Repository>({
     queryKey: ["/api/repositories", ...repo1?.split("/") || []],
     enabled: !!repo1 && repo1.includes("/"),
   });
 
-  const { data: repo2Data, isLoading: repo2Loading } = useQuery({
+  const { data: repo2Data, isLoading: repo2Loading } = useQuery<Repository>({
     queryKey: ["/api/repositories", ...repo2?.split("/") || []],
     enabled: !!repo2 && repo2.includes("/"),
   });
 
-  const { data: searchResults1, isLoading: searchLoading1 } = useQuery({
+  const { data: searchResults1, isLoading: searchLoading1 } = useQuery<SearchRepositoriesResponse>({
     queryKey: ["/api/search/repositories", repo1Query],
     enabled: repo1Query.length > 2,
     staleTime: 5000,
   });
 
-  const { data: searchResults2, isLoading: searchLoading2 } = useQuery({
+  const { data: searchResults2, isLoading: searchLoading2 } = useQuery<SearchRepositoriesResponse>({
     queryKey: ["/api/search/repositories", repo2Query],
     enabled: repo2Query.length > 2,
     staleTime: 5000,

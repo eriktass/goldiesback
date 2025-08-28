@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { List, Grid } from "lucide-react";
+import type { SearchRepositoriesResponse } from "@/lib/queryClient";
+import type { Repository } from "@shared/schema";
 
 interface SearchFilters {
   language?: string;
@@ -35,7 +37,7 @@ export default function Home() {
   });
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
 
-  const { data: searchResults, isLoading } = useQuery({
+  const { data: searchResults, isLoading } = useQuery<SearchRepositoriesResponse>({
     queryKey: ["/api/search/repositories", searchParams.query, searchParams.sort, searchParams.order, searchParams.page],
     enabled: !!searchParams.query,
   });
@@ -156,7 +158,7 @@ export default function Home() {
               </div>
             ) : (
               <div className={viewMode === "grid" ? "grid grid-cols-1 lg:grid-cols-2 gap-4" : "space-y-4"}>
-                {repositories.map((repo: any) => (
+                {repositories.map((repo: Repository) => (
                   <RepositoryCard key={repo.id} repository={repo} />
                 ))}
               </div>
