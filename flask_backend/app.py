@@ -117,9 +117,10 @@ def save_repository_to_db(repo_data):
     repo = Repository.query.filter_by(github_id=repo_data['id']).first()
     
     if not repo:
-        repo = Repository(github_id=repo_data['id'])
+        repo = Repository()
     
-    # Update repository fields
+    # Update repository fields  
+    repo.github_id = repo_data['id']
     repo.name = repo_data.get('name', '')
     repo.full_name = repo_data.get('full_name', '')
     repo.description = repo_data.get('description', '')
@@ -184,10 +185,9 @@ def search_repositories():
         return jsonify({'error': 'Failed to fetch from GitHub API'}), 500
     
     # Save search history
-    search_record = SearchHistory(
-        query=query,
-        results_count=data.get('total_count', 0)
-    )
+    search_record = SearchHistory()
+    search_record.query = query
+    search_record.results_count = data.get('total_count', 0)
     db.session.add(search_record)
     
     # Save repositories to database

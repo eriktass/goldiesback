@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar progressBar;
     
-    // Your Flask backend URL - update this with your actual deployment URL
-    private static final String BASE_URL = "https://your-replit-app.replit.app";
+    // Flask Python backend URL - configured for Replit deployment
+    private static final String BASE_URL = "https://05d616a6-6fda-4cc2-96c0-a6faf0e51291-00-104z2y22bnszw.picard.replit.dev:5001";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
